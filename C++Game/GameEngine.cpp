@@ -1,9 +1,4 @@
-//
-//  GameEngine.cpp
-//  C++Game
-//
-//  Created by Hudson Wesel on 9/15/23.
-//
+
 
 #include <cstdlib>
 #include <string>
