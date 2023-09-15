@@ -33,7 +33,7 @@ void GameEngine :: setCurrentPokemon(){
     
 }
 
-// TODO: IMPLEMENT BINARY TREE OR LINKED LIST
+// TODO: IMPLEMENT BINARY TREE
 void GameEngine :: generateEncounter(){
     string displayText;
     
@@ -96,6 +96,7 @@ void GameEngine:: playBattleMusic() {
     const char* charPointer = commandString.c_str();
     system(charPointer);
 }
+ 
 void GameEngine:: playGame() {
     while(player.health > 0)
         {
