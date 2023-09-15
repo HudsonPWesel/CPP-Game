@@ -70,4 +70,5 @@ void Pokemon :: playBattleCry(){
     cout << commandString << endl;
     const char* charPointer = commandString.c_str();
     system(charPointer);
+    
 }
