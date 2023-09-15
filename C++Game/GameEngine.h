@@ -25,12 +25,17 @@ public:
     GameEngine(vector<Pokemon> possiblePokemon, vector<string> possiblePlayerOptions, Player player);
     void playBattleMusic();
     void playGame();
+    void generateEncounter();
     
 private:
     Pokemon currentPokemon;
+    map<string, function<void()>> playerChoiceFunctionMap;
     void setCurrentPokemon ();
     void playTurn();
+    void printOptions();
+    int getPlayerChoice();
     
+
 };
 
 #endif /* GameEngine_h */

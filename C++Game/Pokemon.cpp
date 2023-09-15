@@ -72,3 +72,4 @@ void Pokemon :: playBattleCry(){
     system(charPointer);
     
 }
+
