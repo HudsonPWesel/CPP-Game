@@ -1,10 +1,3 @@
-//
-//  Monster.cpp
-//  C++Game
-//
-//  Created by Hudson Wesel on 9/14/23.
-//
-
 #include <stdio.h>
 #include <cstdlib>
 #include <string>
