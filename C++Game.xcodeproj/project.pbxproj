@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6DA30A6E2AB32BBF006DCFF4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DA30A6D2AB32BBF006DCFF4 /* main.cpp */; };
+		6D3147CF2AB412DA0030120C /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D3147CE2AB412DA0030120C /* GameEngine.cpp */; };
+		6DD12A852AB33EC100FCAB1E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD12A842AB33EC100FCAB1E /* Player.cpp */; };
+		6DD4C31F2AB33046008F1865 /* Pokemon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD4C31E2AB33046008F1865 /* Pokemon.cpp */; };
+		6DD4C3212AB33301008F1865 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD4C3202AB33301008F1865 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6D3147CE2AB412DA0030120C /* GameEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
+		6D3147D02AB412E40030120C /* GameEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
 		6DA30A6A2AB32BBF006DCFF4 /* C++Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "C++Game"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6DA30A6D2AB32BBF006DCFF4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6DD12A802AB33E7900FCAB1E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		6DD12A842AB33EC100FCAB1E /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		6DD4C31D2AB32E08008F1865 /* Pokemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pokemon.h; sourceTree = "<group>"; };
+		6DD4C31E2AB33046008F1865 /* Pokemon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pokemon.cpp; sourceTree = "<group>"; };
+		6DD4C3202AB33301008F1865 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6DD4C3222AB33764008F1865 /* Characters */ = {isa = PBXFileReference; lastKnownFileType = text; path = Characters; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +67,14 @@
 		6DA30A6C2AB32BBF006DCFF4 /* C++Game */ = {
 			isa = PBXGroup;
 			children = (
-				6DA30A6D2AB32BBF006DCFF4 /* main.cpp */,
+				6D3147D02AB412E40030120C /* GameEngine.h */,
+				6D3147CE2AB412DA0030120C /* GameEngine.cpp */,
+				6DD12A842AB33EC100FCAB1E /* Player.cpp */,
+				6DD12A802AB33E7900FCAB1E /* Player.h */,
+				6DD4C31D2AB32E08008F1865 /* Pokemon.h */,
+				6DD4C31E2AB33046008F1865 /* Pokemon.cpp */,
+				6DD4C3202AB33301008F1865 /* main.cpp */,
+				6DD4C3222AB33764008F1865 /* Characters */,
 			);
 			path = "C++Game";
 			sourceTree = "<group>";
@@ -119,7 +136,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DA30A6E2AB32BBF006DCFF4 /* main.cpp in Sources */,
+				6DD4C3212AB33301008F1865 /* main.cpp in Sources */,
+				6DD4C31F2AB33046008F1865 /* Pokemon.cpp in Sources */,
+				6DD12A852AB33EC100FCAB1E /* Player.cpp in Sources */,
+				6D3147CF2AB412DA0030120C /* GameEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
