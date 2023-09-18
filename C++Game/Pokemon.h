@@ -24,7 +24,7 @@ public:
     map<string,int> attackMoves;
     bool isLegendary;
     
-    void attackPlayer();
+    int attackPlayer();
     void playBattleCry();
     
     Pokemon(int health, string name, map<string, int> attackMoves, string battleCry, bool isLegendary);

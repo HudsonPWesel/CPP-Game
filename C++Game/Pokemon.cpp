@@ -12,7 +12,8 @@ using namespace std;
 Pokemon :: Pokemon(int health, string name, map<string,int> attackMoves, string battleCry, bool isLegendary) : health{health}, name{name},attackMoves{attackMoves}, battleCry{battleCry}, isLegendary{isLegendary} {};
 
 Pokemon :: Pokemon() : Pokemon {{},{},{},{}, {}} {};
-void Pokemon :: attackPlayer(){
+
+int Pokemon :: attackPlayer(){
 
     playBattleCry();
     
@@ -24,6 +25,7 @@ void Pokemon :: attackPlayer(){
     damageDelt = isCriticalAttack ? damageDelt * 2: damageDelt;
   
     cout << name << " Used : " << chosenAttack << endl << "Dmg Delt: " << damageDelt << endl;
+    return damageDelt;
     
 //TODO:  Add Battle Music
     

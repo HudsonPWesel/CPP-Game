@@ -6,7 +6,7 @@
 #include <ctime>
 #include "Pokemon.h"
 #include "GameEngine.h"
-
+#include "Dungeon.h"
 
 #include <stdio.h>
 int main(){
@@ -34,11 +34,16 @@ int main(){
     
     vector<Pokemon> possiblePokemon {pikachu, latias};
     vector<string> possiblePlayerOptions {"Enter Cave...", "Run Away"};
-
+    vector<string> possibleEncounterOptions {"Attack","RUN"};
     map<string, int> inventory {};
     Player player {100, inventory};
-    GameEngine engine {possiblePokemon, possiblePlayerOptions, player};
+    
+    
+    GameEngine engine {possiblePokemon, possiblePlayerOptions, player, possibleEncounterOptions};
+    
     engine.playGame();
+    
+    
     };
     
     
