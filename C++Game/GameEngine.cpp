@@ -38,98 +38,111 @@ int rollForAtkDamage(int min, int max){
 }
 
 int GameEngine:: playAttackEncounter(){
-//    Pokemon currentPokemon {dungeons.at(0)->containedPokemon};
-    if(dungeons.at(0)->containedPokemon.health < 0)
-        return 10; // Break out of while loop
+    int newPlayerChoice {10}; // Break out of loop;
+
+    Pokemon* currentPokemon = &(dungeons.at(flipCoin())->containedPokemon);
+    string playerHealthMessage {};
     
-    cout << "YOU FOUND A PIKACHU WHAT WILL YOU DO?" << endl;
-    printOptions(possibleEncounterOptions);
-//        currentPokemon.playBattleCry();
-//        playBattleMusic(currentPokemon);
     
-//        Encounter Options
-    cout << "PIKA HEALTH: " << dungeons.at(0)->containedPokemon.health << endl;
     
-    int newPlayerChoice = getPlayerChoice(possibleEncounterOptions);
-    
-    if(newPlayerChoice == 1)
-       {
-           player.health -= dungeons.at(0)->containedPokemon.attackPlayer();
-           cout << "Your New Health: " << player.health << "%" << endl;
-       }
-    
-    else{
-        cout << "You Attacked Pikachu!" << endl;
+    while(currentPokemon->health > 0 && player.health > 0)
+    {
+        cout << "\n YOU FOUND A " << currentPokemon->name <<  " WHAT WILL YOU DO?" << endl;
         
-       int dmg = rollForAtkDamage(0,dungeons.at(0)->containedPokemon.health);
-       if (dmg >= dungeons.at(0)->containedPokemon.health * .25)
-       {
-           dungeons.at(0)->containedPokemon.health -= dmg;
-           cout << dungeons.at(0)->containedPokemon.health << "%" << endl;
-       }
-       else
-       {
-           cout << "CLUTZ | You hurt yourself in confusion!" << endl;
-           
-           player.health -= dmg;
-           cout << "Your New Health: " << player.health;
-       }
-           
-        return 0;
-   }
+        printOptions(possibleEncounterOptions);
+        //        currentPokemon.playBattleCry();
+//        playBattleMusic(*currentPokemon);
+        
+        //        Encounter Options
+        
+        newPlayerChoice = getPlayerChoice(possibleEncounterOptions);
+        
+        player.health -= currentPokemon->attackPlayer();
+        
+        if(player.health <= 0)
+            break;
+
+        cout << "Your New Health: " + to_string(player.health) + "%";
+        
+//        Attack Pokemon selected
+        if(newPlayerChoice == 0){
+            
+            cout << "\n You Attacked " << currentPokemon->name << endl;
+            
+            int dmg = rollForAtkDamage(0,currentPokemon->health);
+            
+            
+            
+            if (dmg >= 1)
+            {
+                cout << "You Did " << dmg << " Damage! " << endl;
+                
+                currentPokemon->health -= dmg;
+                
+                cout << currentPokemon->name<< "'s Health: " << currentPokemon->health << "%" << endl;
+                
+            }
+            else
+            {
+                cout << "CLUTZ | You hurt yourself in confusion!" << endl;
+                
+                player.health -= dmg;
+                cout << playerHealthMessage;
+            }
+            
+        }
+        
+    }
     return newPlayerChoice;
 }
-
-int GameEngine :: playOutsideCaveEncounter(){
-    cout << "The Sun Is Burning Your Skin!" << endl;
-    int dmg = rollForAtkDamage(0, 10);
-    player.health -= dmg;
-    
-    string newHealth = player.health < 0 ? "0" : to_string(player.health);
-    
-    cout << "The Sun Did" << dmg << "Damage!" << endl;
-    
-    cout << "Your New Health: " << newHealth << "%";
-    
-    return -1; // They need to enter cave otherwise they need to finish the battle with pikachu
+void GameEngine :: playOutsideCaveEncounter(){
+    int newPlayerChoice {1};
+    while(newPlayerChoice == 1){
+        
+        cout << "The Sun Is Burning Your Skin!" << endl;
+        int dmg = rollForAtkDamage(0, 10);
+        player.health -= dmg;
+        
+        string newHealth = player.health < 0 ? "0" : to_string(player.health);
+        
+        cout << "The Sun Did " << dmg << " Damage!" << endl;
+        
+        cout << "Your New Health: " << newHealth << "%";
+        
+        printOptions(possiblePlayerOptions);
+        newPlayerChoice = getPlayerChoice(possiblePlayerOptions);
+    }
+     // They need to enter cave otherwise they need to finish the battle with pikachu
+    playAttackEncounter();
 }
-int GameEngine:: selectEncounter (int indexOfPlayerChoice){
+void GameEngine:: selectEncounter (int indexOfPlayerChoice){
     
     bool isInsideCave = indexOfPlayerChoice == 0;
     
-    if(isInsideCave)
-        return playAttackEncounter();
+    while(isInsideCave && player.health > 0 && indexOfPlayerChoice == 0)
+        indexOfPlayerChoice = playAttackEncounter();
 
-    else
-        return playOutsideCaveEncounter();
-
+    while(indexOfPlayerChoice == 1 && player.health > 0)
+        playOutsideCaveEncounter();
     
 }
 
 void GameEngine :: generateEncounter(){
-    string displayText;
-    int indexOfPlayerChoice {-1};
-    printOptions(possiblePlayerOptions);
+    int indexOfPlayerChoice;
     
-    indexOfPlayerChoice = getPlayerChoice(possiblePlayerOptions);
-    while(player.health > 0 )
-            indexOfPlayerChoice = selectEncounter(indexOfPlayerChoice);
-    
-    if(player.health < 0)
-        cout << "YOU ARE DEAD";
-    else
-        cout << "YOU WIN";
+        printOptions(possiblePlayerOptions);
+        indexOfPlayerChoice = getPlayerChoice(possiblePlayerOptions);
+        selectEncounter(indexOfPlayerChoice);
+        
+    }
 
+int GameEngine:: flipCoin(){
+    srand(unsigned (time(0)));
+    
+    int val = random() % 2;
+    return val;
+     
 }
-
-    
-//if (!isStartOfGame)
-//    cout << "Next Level! | CONGRATULATIONS ON BEATING THE PREVIOUS LEVEL" << endl;
-//else{
-//    cout << "Welcome to Pokemon Cave Text Advenure Game!" << endl;
-    
-////    Check if they have entered cave yet
-//    bool isStartOfGame {find(possiblePlayerOptions.begin(), possiblePlayerOptions.end(), "Enter Cave...") != possiblePlayerOptions.end()};
 
 
 int GameEngine :: getPlayerChoice(vector<string> options) {
@@ -173,13 +186,17 @@ void GameEngine :: setDungeons() {
  
 void GameEngine:: playGame() {
     setDungeons();
-    cout << dungeons.at(0)->containedPokemon.name << endl;
-  
-    while(player.health > 0)
-        {
-            generateEncounter();
-            break;
-        }
+    
+    generateEncounter();
+    
+    if(player.health >= 0)
+        cout << "You Lose!";
+        
+    else{
+        system("afplay ~/kirby.wav");
+        cout << "Your Final Score: " << (abs(player.health * 32)) << "Points!";
+    }
+    
     
 };
 

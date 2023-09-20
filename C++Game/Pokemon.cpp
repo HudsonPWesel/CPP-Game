@@ -6,7 +6,7 @@
 #include <ctime>
 
 #include "Pokemon.h"
-
+#include "GameEngine.h"
 using namespace std;
 
 Pokemon :: Pokemon(int health, string name, map<string,int> attackMoves, string battleCry, bool isLegendary) : health{health}, name{name},attackMoves{attackMoves}, battleCry{battleCry}, isLegendary{isLegendary} {};
@@ -35,11 +35,10 @@ int Pokemon :: attackPlayer(){
     
 }
 
+
+
 bool Pokemon ::  calculateIsCriticalAttack(){
-    srand(unsigned (time(0)));
-    
-    int coinFlip = rand() % 2;
-    return coinFlip == 1;
+    return GameEngine::flipCoin() == 1;
     
 }
 

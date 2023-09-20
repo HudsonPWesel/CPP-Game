@@ -35,8 +35,9 @@ public:
     void playGame();
     void generateEncounter();
     void setDungeons();
-    int selectEncounter(int indexOfPlayerChoice);
+    void selectEncounter(int indexOfPlayerChoice);
     int playAttackEncounter();
+    static int flipCoin();
     
 private:
     map<string, function<void()>> playerChoiceFunctionMap;
@@ -44,7 +45,7 @@ private:
     void printOptions(vector<string> options);
     int getPlayerChoice(vector<string> options);
     void playEncounter(int playerChoice);
-    int playOutsideCaveEncounter();
+    void playOutsideCaveEncounter();
     
 
 };

@@ -34,7 +34,7 @@ int main(){
     
     vector<Pokemon> possiblePokemon {pikachu, latias};
     vector<string> possiblePlayerOptions {"Enter Cave...", "Run Away"};
-    vector<string> possibleEncounterOptions {"Attack","RUN"};
+    vector<string> possibleEncounterOptions {"Attack"};
     map<string, int> inventory {};
     Player player {100, inventory};
     
